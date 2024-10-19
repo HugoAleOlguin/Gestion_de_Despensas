@@ -51,7 +51,7 @@ Puedes acceder el código fuente del proyecto desde el siguiente enlace:
 
 Para ejecutar el proyecto, sigue estos pasos:
 
-1. Descarga el archivo 👉 ""
+1. Descarga el archivo 👉 [Releases]("https://github.com/HugoAleOlguin/Gestion_de_Despensas/releases/tag/Programa")
 2. Abre el archivo `DespensaElTato.cpp` en tu entorno de desarrollo C++ preferido.
 3. Compila y ejecuta el código.
 
