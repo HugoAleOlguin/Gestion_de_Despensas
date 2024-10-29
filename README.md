@@ -5,17 +5,17 @@
 </div>
 
 > [!NOTE]  
-> 📝 **"Gestión de despensas"** es un sistema de gestión diseñado para pequeñas despensas y kioscos, facilitando el manejo de precios, inventarios y cuentas corrientes de forma sencilla y eficiente.
+> 📝 **"Despensa Simple"** es un sistema de gestión diseñado para pequeñas despensas y kioscos, facilitando el manejo de precios, inventarios y cuentas corrientes de forma sencilla y eficiente.
 
 ## 📚 Índice
 
-- [Descripción del proyecto](#descripción-del-proyecto)
-- [Estado del proyecto](#estado-del-proyecto)
-- [Características del proyecto](#características-del-proyecto)
-- [Acceso al proyecto](#acceso-al-proyecto)
+- [Descripción del proyecto](#-descripción-del-proyecto)
+- [Estado del proyecto](#-estado-del-proyecto)
+- [Características del proyecto](#-características-del-proyecto)
+- [Acceso al proyecto](#-acceso-al-proyecto)
 - [🛠️ Cómo ejecutar el proyecto](#-cómo-ejecutar-el-proyecto)
-- [Tecnologías utilizadas](#tecnologías-utilizadas)
-- [Conclusión](#conclusión)
+- [Tecnologías utilizadas](#-tecnologías-utilizadas)
+- [Conclusión](#-conclusión)
 
 ## 📖 Descripción del proyecto
 
@@ -36,7 +36,7 @@ Actualmente, la aplicación está en su versión beta, con funcionalidad complet
 
 ## ⭐ Características del proyecto
 
-- **Gestión de productos**: Añadir, eliminar y actualizar productos en el inventario virtual.
+- **ón de productos**: Añadir, eliminar y actualizar productos en el inventario virtual.
 - **Búsqueda rápida**: Barra de búsqueda que permite encontrar productos rápidamente.
 - **Cálculo de vuelto**: Automáticamente calcula el vuelto según el monto recibido.
 - **Margen de ganancia personalizable**: Configura diferentes márgenes para calcular los precios de venta.
@@ -48,13 +48,13 @@ Actualmente, la aplicación está en su versión beta, con funcionalidad complet
 
 Puedes acceder al código fuente del proyecto desde el siguiente enlace:
 
-- [Repositorio GitHub](https://github.com/HugoAleOlguin/Gestion_de_Despensas)
+- [Repositorio GitHub](https://github.com/HugoAleOlguin/on_de_Despensas)
 
 ## 🛠️ Cómo ejecutar el proyecto
 
 Para ejecutar el proyecto, sigue estos pasos:
 
-1. Descarga el archivo 👉 [Releases](https://github.com/HugoAleOlguin/Gestion_de_Despensas/releases/tag/Programa)
+1. Descarga el archivo 👉 [Releases](https://github.com/HugoAleOlguin/on_de_Despensas/releases/tag/Programa)
 2. Abre el archivo `DespensaElTato.cpp` en tu entorno de desarrollo C++ preferido.
 3. Compila y ejecuta el código.
 
@@ -64,17 +64,16 @@ Para ejecutar el proyecto, sigue estos pasos:
 ## 🖥️ Tecnologías utilizadas
 
 - **Lenguaje**: C++
-- **Sistema Operativo**: Windows/Linux
+- **Sistema Operativo**: Windows
 - **IDE recomendado**: Code::Blocks, Dev-C++
 
 <div style="text-align: center;">
     <img src="cpp.png" alt="C++" width="40" />
-    <img src="wl.png" alt="Windows/Linux" width="60" />
     <img src="dev.png" alt="Dev-C++" width="40" />
 </div>
 
 ## 💬 Conclusión
 
-**"Gestión de despensas"** es un proyecto pensado para simplificar la vida de los emprendedores, brindando una herramienta útil y fácil de usar. El objetivo es mejorar el sistema con nuevas funcionalidades conforme se adquieran más conocimientos.
+**"Despensa Simple"** es un proyecto pensado para simplificar la vida de los emprendedores, brindando una herramienta útil y fácil de usar. El objetivo es mejorar el sistema con nuevas funcionalidades conforme se adquieran más conocimientos.
 
 > ✨ **Las mejoras futuras incluirán reportes detallados y más opciones de personalización!**
