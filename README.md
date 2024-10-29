@@ -13,7 +13,7 @@
 - [Estado del proyecto](#-estado-del-proyecto)
 - [Características del proyecto](#-características-del-proyecto)
 - [Acceso al proyecto](#-acceso-al-proyecto)
-- [🛠️ Cómo ejecutar el proyecto](#-cómo-ejecutar-el-proyecto)
+- [Cómo ejecutar el proyecto](%EF%B8%8F-cómo-ejecutar-el-proyecto)
 - [Tecnologías utilizadas](#-tecnologías-utilizadas)
 - [Conclusión](#-conclusión)
 
