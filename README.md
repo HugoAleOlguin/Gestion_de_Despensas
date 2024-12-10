@@ -36,7 +36,7 @@ Actualmente, la aplicación está en su versión beta, con funcionalidad complet
 
 ## ⭐ Características del proyecto
 
-- **ón de productos**: Añadir, eliminar y actualizar productos en el inventario virtual.
+- **Adicción de productos**: Añadir, eliminar y actualizar productos en el inventario virtual.
 - **Búsqueda rápida**: Barra de búsqueda que permite encontrar productos rápidamente.
 - **Cálculo de vuelto**: Automáticamente calcula el vuelto según el monto recibido.
 - **Margen de ganancia personalizable**: Configura diferentes márgenes para calcular los precios de venta.
@@ -54,8 +54,8 @@ Puedes acceder al código fuente del proyecto desde el siguiente enlace:
 
 Para ejecutar el proyecto, sigue estos pasos:
 
-1. Descarga el archivo 👉 [Releases](https://github.com/HugoAleOlguin/on_de_Despensas/releases/tag/Programa)
-2. Abre el archivo `DespensaElTato.cpp` en tu entorno de desarrollo C++ preferido.
+1. Descarga el archivo 👉 [Releases](https://github.com/HugoAleOlguin/Gestion_de_Despensas/releases)
+2. Abre el archivo `Despensa.simple.v2.1.cpp` en tu entorno de desarrollo C++ preferido.
 3. Compila y ejecuta el código.
 
 > [!IMPORTANT]  
@@ -65,7 +65,7 @@ Para ejecutar el proyecto, sigue estos pasos:
 
 - **Lenguaje**: C++
 - **Sistema Operativo**: Windows
-- **IDE recomendado**: Code::Blocks, Dev-C++
+- **IDE recomendado**: Dev-C++
 
 <div style="text-align: center;">
     <img src="cpp.png" alt="C++" width="40" />
