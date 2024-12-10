@@ -11,7 +11,6 @@
 
 - [Descripción del proyecto](#-descripción-del-proyecto)
 - [Estado del proyecto](#-estado-del-proyecto)
-- [Características del proyecto](#-características-del-proyecto)
 - [Acceso al proyecto](#-acceso-al-proyecto)
 - [Cómo ejecutar el proyecto](%EF%B8%8F-cómo-ejecutar-el-proyecto)
 - [Tecnologías utilizadas](#-tecnologías-utilizadas)
@@ -33,13 +32,6 @@ Este proyecto está pensado para ser accesible a emprendedores que recién inici
 </p>
 
 Actualmente, la aplicación está en su versión beta, con funcionalidad completa para cálculos de ganancias e inventario. Se planea añadir más funciones en versiones futuras, como reportes automáticos, extracción de datos, inventario local y gráficos de ventas.
-
-## ⭐ Características del proyecto
-
-- **Adicción de productos**: Añadir, eliminar y actualizar productos en el inventario virtual.
-- **Búsqueda rápida**: Barra de búsqueda que permite encontrar productos rápidamente.
-- **Cálculo de vuelto**: Automáticamente calcula el vuelto según el monto recibido.
-- **Margen de ganancia personalizable**: Configura diferentes márgenes para calcular los precios de venta.
 
 > [!WARNING]  
 > ⚠️ El sistema no tiene función de base de datos local, código de barras ni acceso en línea.
