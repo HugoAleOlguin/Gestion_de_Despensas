@@ -1,91 +1,166 @@
-#include <iostream>
-#include <string>
+#include <iostream>   // Libreria estandar para entrada y salida de datos
+#include <string>     // Libreria para manejo de cadenas de texto
+#include <windows.h>  // Libreria para manejo de colores en consola (Windows)
+
 using namespace std;
 
 // ==========================================
-// ESTRUCTURA PRINCIPAL
+// CONFIGURACION DE COLORES PARA LA CONSOLA
 // ==========================================
-// Esta estructura almacena toda la información
-// relacionada con cada producto en la tienda
+// Funcion para cambiar el color del texto en la consola
+void setColor(int color) {
+    // Usa el handle de salida estandar para cambiar los colores
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
+
+// Colores disponibles:
+// 1 - Azul
+// 2 - Verde
+// 3 - Cyan (Azul verdoso)
+// 4 - Rojo
+// 5 - Magenta (Purpura)
+// 6 - Amarillo
+// 7 - Blanco
+// 8-15 - Variaciones de brillo
+
+// Funcion para resetear el color a blanco predeterminado
+void resetColor() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, 7);
+}
+
+// ==========================================
+// ESTRUCTURA PRINCIPAL DEL PRODUCTO
+// ==========================================
+// Estructura para almacenar toda la informacion de un producto
+// - Usa struct en lugar de class para simplicidad
+// - Todos los campos son publicos por defecto
 struct Producto {
-    string nombre;    // Nombre del producto
-    int cantidad;     // Cantidad en inventario
-    float costo;      // Costo de compra
+    // NOTA: Cada campo representa un aspecto del producto
+    string nombre;    // Nombre del producto (texto)
+    int cantidad;     // Cantidad disponible en inventario (numero entero)
+    float costo;      // Costo de compra (numero decimal)
+    
+    // PRECIOS CALCULADOS AUTOMATICAMENTE
     float precioVenta40;  // Precio con 40% de ganancia
     float precioVenta50;  // Precio con 50% de ganancia
     float precioVentaPersonalizado;  // Precio con ganancia personalizada
 };
 
 // ==========================================
-// FUNCIONES DE CÁLCULO
+// FUNCIONES DE CALCULO
 // ==========================================
-// Función que calcula el precio de venta según el porcentaje de ganancia
-// Parámetros:
-// - costo: el costo base del producto
-// - porcentajeGanancia: el porcentaje de ganancia deseado
+// Funcion para calcular el precio de venta basado en el porcentaje de ganancia
+// PARAMETROS:
+// - costo: precio base del producto
+// - porcentajeGanancia: porcentaje adicional sobre el costo
+// RETORNA: Precio final de venta
 float calcularPrecioVenta(float costo, float porcentajeGanancia) {
+    // FORMULA: Precio final = Costo * (1 + porcentaje/100)
+    // Ejemplo: $10 con 40% de ganancia = $10 * (1 + 0.4) = $14
     return costo * (1 + porcentajeGanancia / 100);
 }
 
 // ==========================================
 // FUNCIONES DE ENTRADA DE DATOS
 // ==========================================
-// Función para ingresar los productos al sistema
-// Parámetros:
-// - productos[]: array donde se almacenarán los productos
-// - numProductos: cantidad de productos a ingresar
+// Funcion para ingresar productos al sistema
 void ingresarProductos(Producto productos[], int numProductos) {
-    // Ciclo para ingresar cada producto
+    // Bucle para ingresar cada producto
     for (int i = 0; i < numProductos; i++) {
-        cout << "Producto " << i + 1 << ":" << endl;
-        cout << "Ingrese el nombre del producto: ";
+        // Limpia la pantalla para cada producto
+        system("cls");
+        
+        // Cambia el color del encabezado
+        setColor(11); // Cyan
+        cout << "\n" << string(50, '=') << endl;
+        cout << "        PRODUCTO " << i + 1 << endl;
+        cout << string(50, '=') << endl;
+        resetColor();
+        
+        // NOTA: Cada producto requiere 3 datos principales
+        setColor(6); // Amarillo para instrucciones
+        cout << " * Ingrese el nombre del producto: ";
+        resetColor();
         cin >> productos[i].nombre;
         
-        cout << "Ingrese la cantidad del producto: ";
+        setColor(6);
+        cout << " * Ingrese la cantidad del producto: ";
+        resetColor();
         cin >> productos[i].cantidad;
         
-        cout << "Ingrese el costo del producto: $";
+        setColor(6);
+        cout << " * Ingrese el costo del producto: $";
+        resetColor();
         cin >> productos[i].costo;
         
-        // Cálculo automático de precios con diferentes ganancias
+        // Calcula precios automaticamente despues de ingresar el costo
         productos[i].precioVenta40 = calcularPrecioVenta(productos[i].costo, 40);
         productos[i].precioVenta50 = calcularPrecioVenta(productos[i].costo, 50);
+        
+        // Separador visual
+        setColor(3); // Cyan
+        cout << string(50, '-') << endl;
+        resetColor();
     }
 }
 
 // ==========================================
-// FUNCIONES DE CÁLCULO DE PRECIOS
+// FUNCIONES DE CALCULO DE PRECIOS
 // ==========================================
-// Función para calcular precios con ganancia personalizada
-// Parámetros:
-// - productos[]: array de productos
-// - numProductos: cantidad total de productos
-// - porcentajeGanancia: porcentaje de ganancia deseado
+// Funcion para calcular precios con ganancia personalizada
 void calcularPreciosPersonalizado(Producto productos[], int numProductos, float porcentajeGanancia) {
+    // Recorre todos los productos y calcula el precio con el porcentaje especificado
     for (int i = 0; i < numProductos; i++) {
         productos[i].precioVentaPersonalizado = calcularPrecioVenta(productos[i].costo, porcentajeGanancia);
     }
 }
 
 // ==========================================
-// FUNCIONES DE VISUALIZACIÓN
+// FUNCIONES DE VISUALIZACION
 // ==========================================
-// Función para mostrar la lista completa de productos
+// Funcion para mostrar la lista de productos
 void mostrarProductos(const Producto productos[], int numProductos, bool mostrarPersonalizado = false, float porcentajePersonalizado = 0) {
-    cout << "=== Lista de productos ===" << endl;
+    // Encabezado con color
+    setColor(10); // Verde
+    cout << string(60, '=') << endl;
+    cout << "::::::::::  LISTA COMPLETA DE PRODUCTOS  ::::::::::" << endl;
+    cout << string(60, '=') << endl;
+    resetColor();
     
+    // Muestra cada producto
     for (int i = 0; i < numProductos; i++) {
-        cout << endl << "Producto: " << productos[i].nombre << endl;
-        cout << "Cantidad en inventario: " << productos[i].cantidad << endl;
-        cout << "Costo: $" << productos[i].costo << endl;
-        cout << "Precio con 40% de ganancia: $" << productos[i].precioVenta40 << endl;
-        cout << "Precio con 50% de ganancia: $" << productos[i].precioVenta50 << endl;
+        // Separador de productos
+        setColor(3); // Cyan
+        cout << string(50, '-') << endl;
         
+        // Nombre del producto en color
+        setColor(14); // Amarillo brillante
+        cout << "|| Producto: " << productos[i].nombre << endl;
+        resetColor();
+        
+        cout << string(50, '-') << endl;
+        
+        // Detalles del producto
+        setColor(7); // Blanco
+        cout << " >> Cantidad en inventario: " << productos[i].cantidad << endl;
+        cout << " >> Costo: $" << productos[i].costo << endl;
+        cout << " >> Precio con 40% de ganancia: $" << productos[i].precioVenta40 << endl;
+        cout << " >> Precio con 50% de ganancia: $" << productos[i].precioVenta50 << endl;
+        
+        // Muestra precio personalizado si esta habilitado
         if (mostrarPersonalizado) {
-            cout << "Precio con " << porcentajePersonalizado << "% de ganancia: $" 
+            setColor(13); // Magenta
+            cout << " >> Precio con " << porcentajePersonalizado << "% de ganancia: $" 
                  << productos[i].precioVentaPersonalizado << endl;
+            resetColor();
         }
-        cout << "----------------------------------------" << endl;
+        
+        // Separador final
+        setColor(3);
+        cout << string(50, '*') << endl;
+        resetColor();
     }
 }
 
@@ -114,71 +189,145 @@ void buscarProducto(const Producto productos[], int numProductos) {
     }
 }
 
-// Función para mostrar la información del software
+
+// Funcion para mostrar informacion del software
 void mostrarInformacionSoftware() {
-    cout << "=== Información del Software ===" << endl;
-    cout << "Nombre: Sistema de Gestión de Despensa" << endl;
-    cout << "Versión: 1.0.0" << endl;
-    cout << "Autor: Hugo Olguin" << endl;
-    cout << "Fecha: Octubre 2024" << endl;
-    cout << endl;
-    cout << "Próximas actualizaciones:" << endl;
-    cout << "- Sistema de modificación de productos" << endl;
-    cout << "- Control de inventario avanzado" << endl;
-    cout << "- Sistema de reportes" << endl;
-    cout << "- Exportación de datos" << endl;
-    cout << "- Interfaz gráfica" << endl;
-    cout << endl;
+    system("cls");
+    
+    // Encabezado principal
+    setColor(14); // Amarillo
+    cout << string(50, '=') << endl;
+    cout << "::::::  SISTEMA DE GESTION DE DESPENSA  ::::::" << endl;
+    cout << string(50, '=') << endl;
+    resetColor();
+    
+    // Seccion de informacion
+    setColor(11); // Cyan
+    cout << string(50, '-') << endl;
+    cout << "           INFORMACION DEL SOFTWARE          " << endl;
+    cout << string(50, '-') << endl;
+    resetColor();
+    
+    // Detalles del software
+    setColor(7); // Blanco
+    cout << " >> Nombre: Sistema de Gestion de Despensa" << endl;
+    cout << " >> Version: 2.1" << endl;
+    cout << " >> Autor: Hugo Olguin" << endl;
+    cout << " >> Fecha: Octubre 2024" << endl;
+    resetColor();
+    
+    // Proximas actualizaciones
+    setColor(10); // Verde
+    cout << string(50, '-') << endl;
+    cout << "         PROXIMAS ACTUALIZACIONES         " << endl;
+    cout << string(50, '-') << endl;
+    resetColor();
+    
+    // Lista de actualizaciones
+    setColor(6); // Amarillo
+    cout << " >> - Sistema de modificacion de productos" << endl;
+    cout << " >> - Control de inventario avanzado" << endl;
+    cout << " >> - Sistema de reportes" << endl;
+    cout << " >> - Exportacion de datos" << endl;
+    cout << " >> - Interfaz grafica" << endl;
+    resetColor();
+    
+    cout << string(50, '-') << endl;
+    
+    setColor(13);  // Magenta
+    cout << "Changelog Version 2.1:" << endl;
+    resetColor();
+    cout << "- Mejoras visuales en la interfaz" << endl;
+    cout << "- Agregado sistema de colores" << endl;
+    cout << "- Optimizacion de presentacion" << endl;
+    
+    cout << string(50, '-') << endl;
+    
     cout << "Para reportar errores o sugerencias:" << endl;
     cout << "email: hugod.ies9012@gmail.com" << endl;
 }
 
+
+
 // ==========================================
-// FUNCIÓN PRINCIPAL
+// FUNCION PRINCIPAL (MAIN)
 // ==========================================
 int main() {
-    // Declaración de variables principales
-    int numProductos = 0;
-    Producto productos[50];  // Array fijo de 50 productos máximo
-    int opcion;
+    // Variables principales
+    int numProductos = 0;     // Contador de productos
+    Producto productos[50];   // Arreglo para almacenar productos
+    int opcion;               // Almacena la opcion del menu
     
-    // Bucle principal del programa
+    // BUCLE PRINCIPAL DEL PROGRAMA
     do {
-        // Limpia la pantalla para mejor visualización
+        // Limpia la pantalla
         system("cls");
         
-        // Muestra el menú principal
-        cout << "=== Software para tu despensa ===" << endl;
-        cout << "1. Ingresar productos" << endl;
-        cout << "2. Mostrar todos los productos" << endl;
-        cout << "3. Calcular precios con ganancia personalizada" << endl;
-        cout << "4. Buscar producto" << endl;
-        cout << "5. Modificar productos (Próximamente)" << endl;
-        cout << "6. Control de inventario (Próximamente)" << endl;
-        cout << "7. Reportes y estadísticas (Próximamente)" << endl;
-        cout << "8. Información del software" << endl;
-        cout << "9. Salir" << endl;
-        cout << "Seleccione una opcion: ";
+        // MENU PRINCIPAL CON COLORES Y SIMBOLOS
+        setColor(10); // Verde
+        cout << string(50, '=') << endl;
+        cout << "::::  SOFTWARE PARA TU DESPENSA  ::::" << endl;
+        cout << string(50, '=') << endl;
+        resetColor();
+        
+        // Opciones del menu con colores
+        setColor(11); // Cyan
+        cout << " 1. Ingresar productos" << endl;
+        cout << " 2. Mostrar todos los productos" << endl;
+        cout << " 3. Calcular precios con ganancia personalizada" << endl;
+        cout << " 4. Buscar producto" << endl;
+        cout << " 5. Modificar productos (Proximamente)" << endl;
+        cout << " 6. Control de inventario (Proximamente)" << endl;
+        cout << " 7. Reportes y estadisticas (Proximamente)" << endl;
+        cout << " 8. Informacion del software" << endl;
+        cout << " 9. Salir" << endl;
+        resetColor();
+        
+        // Solicitar opcion
+        setColor(6); // Amarillo
+        cout << string(50, '-') << endl;
+        cout << " Seleccione una opcion: ";
+        resetColor();
         
         cin >> opcion;
         
+        // Limpiar pantalla
         system("cls");
         
-        // Manejo de las diferentes opciones del menú
+        // SWITCH PRINCIPAL CON COLORES Y DETALLES
         switch (opcion) {
             case 1:  // Ingresar productos
-                cout << "¿Cuantos productos desea ingresar?: ";
+                setColor(14); // Amarillo
+                cout << string(50, '=') << endl;
+                cout << "        INGRESO DE PRODUCTOS       " << endl;
+                cout << string(50, '=') << endl;
+                resetColor();
+                
+                // Solicitar numero de productos
+                setColor(11); // Cyan
+                cout << " Cuantos productos desea ingresar?: ";
+                resetColor();
                 cin >> numProductos;
+                
+                // Validar limite de productos
                 if (numProductos > 50) {
-                    cout << "El maximo de productos es 50." << endl;
+                    setColor(12); // Rojo
+                    cout << " *** El maximo de productos es 50. *** " << endl;
+                    resetColor();
                     numProductos = 50;
                 }
+                
+                // Llamar funcion de ingreso
                 ingresarProductos(productos, numProductos);
                 break;
                 
             case 2:  // Mostrar productos
                 if (numProductos == 0) {
-                    cout << "Primero debe ingresar productos." << endl;
+                    setColor(12); // Rojo
+                    cout << string(50, '!') << endl;
+                    cout << " *** Primero debe ingresar productos *** " << endl;
+                    cout << string(50, '!') << endl;
+                    resetColor();
                 } else {
                     mostrarProductos(productos, numProductos);
                 }
@@ -186,11 +335,21 @@ int main() {
                 
             case 3:  // Calcular precios personalizados
                 if (numProductos == 0) {
-                    cout << "Primero debe ingresar productos." << endl;
+                    setColor(12); // Rojo
+                    cout << string(50, '!') << endl;
+                    cout << " *** Primero debe ingresar productos *** " << endl;
+                    cout << string(50, '!') << endl;
+                    resetColor();
                 } else {
                     float porcentaje;
-                    cout << "Ingrese el porcentaje de ganancia deseado: ";
+                    
+                    // Solicitar porcentaje personalizado
+                    setColor(14); // Amarillo
+                    cout << " Ingrese el porcentaje de ganancia deseado: ";
+                    resetColor();
                     cin >> porcentaje;
+                    
+                    // Calcular y mostrar precios
                     calcularPreciosPersonalizado(productos, numProductos, porcentaje);
                     mostrarProductos(productos, numProductos, true, porcentaje);
                 }
@@ -198,39 +357,52 @@ int main() {
                 
             case 4:  // Buscar producto
                 if (numProductos == 0) {
-                    cout << "Primero debe ingresar productos." << endl;
+                    setColor(12); // Rojo
+                    cout << string(50, '!') << endl;
+                    cout << " *** Primero debe ingresar productos *** " << endl;
+                    cout << string(50, '!') << endl;
+                    resetColor();
                 } else {
                     buscarProducto(productos, numProductos);
                 }
                 break;
                 
-            case 5:  // Modificar productos (Próximamente)
-                cout << "Esta función estará disponible en la próxima actualización." << endl;
+            // Casos 5-7: Funciones proximamente
+            case 5:  
+            case 6:  
+            case 7:  
+                setColor(13); // Magenta
+                cout << string(50, '~') << endl;
+                cout << " Esta funcion estara disponible en la proxima actualizacion. " << endl;
+                cout << string(50, '~') << endl;
+                resetColor();
                 break;
                 
-            case 6:  // Control de inventario (Próximamente)
-                cout << "Esta función estará disponible en la próxima actualización." << endl;
-                break;
-                
-            case 7:  // Reportes (Próximamente)
-                cout << "Esta función estará disponible en la próxima actualización." << endl;
-                break;
-                
-            case 8:  // Información del software
+            case 8:  // Informacion del software
                 mostrarInformacionSoftware();
                 break;
                 
             case 9:  // Salir
-                cout << "¡Gracias por usar el programa!" << endl;
+                setColor(10); // Verde
+                cout << string(50, '=') << endl;
+                cout << "     *** Gracias por usar el programa ***     " << endl;
+                cout << string(50, '=') << endl;
+                resetColor();
                 break;
                 
-            default:  // Opción inválida
-                cout << "Opcion invalida. Por favor, intente nuevamente." << endl;
+            default:  // Opcion invalida
+                setColor(12); // Rojo
+                cout << string(50, '!') << endl;
+                cout << " *** Opcion invalida. Por favor, intente nuevamente *** " << endl;
+                cout << string(50, '!') << endl;
+                resetColor();
         }
         
-        // Pausa antes de volver al menú principal
+        // Pausa antes de volver al menu
         if (opcion != 9) {
-            cout << endl << "Presione Enter para continuar...";
+            setColor(3); // Cyan
+            cout << endl << " Presione Enter para continuar...";
+            resetColor();
             cin.get();
             cin.get();
         }
@@ -239,3 +411,12 @@ int main() {
     
     return 0;
 }
+
+// NOTAS FINALES DEL PROGRAMA
+// =============================
+
+// PROXIMAS MEJORAS:
+// - Persistencia de datos
+// - Interfaz grafica
+// - Validaciones adicionales
+// - Opciones de exportacion
